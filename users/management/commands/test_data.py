@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 import django
 from django.db import IntegrityError
-from users.models import Patient,PhysicianSpeciality, EventCategory, PatientTreatment, Account, PatientLog
+from users.models import Patient,PhysicianSpeciality, EventCategory, PatientTreatment
 
 class Command(BaseCommand):
     help = "Create Test Data"
