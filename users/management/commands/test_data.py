@@ -8,12 +8,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         try:
-            patient1 = Patient.objects.create(patient_id="1")
-            patient2 = Patient.objects.create(patient_id="2")
-            patient3 = Patient.objects.create(patient_id="3")
-            patient4 = Patient.objects.create(patient_id="4")
-            patient5 = Patient.objects.create(patient_id="5")
-            patient6 = Patient.objects.create(patient_id="6")
+            patient1 = Patient.objects.create(patient_id="1",patient_name="Ram")
+            patient2 = Patient.objects.create(patient_id="2",patient_name="Laxman")
+            patient3 = Patient.objects.create(patient_id="3",patient_name="Hanuman")
+            patient4 = Patient.objects.create(patient_id="4",patient_name="Ravan")
+            patient5 = Patient.objects.create(patient_id="5",patient_name="Bharat")
+            patient6 = Patient.objects.create(patient_id="6",patient_name="Bheem")
 
             event1 = EventCategory.objects.create(event_name="Chemotherapy",category='1')
             event2 = EventCategory.objects.create(event_name="Radiation",category='1')
@@ -21,13 +21,12 @@ class Command(BaseCommand):
             event4 = EventCategory.objects.create(event_name="BTKI",category='2')
             event5 = EventCategory.objects.create(event_name="Biopsy",category='3')
 
-            physician1 = PhysicianSpeciality.objects.create(physician_id="1000",speciality_name="Radiologist")
-            physician2 = PhysicianSpeciality.objects.create(physician_id="2000",speciality_name="Onchologist")
-            physician3 = PhysicianSpeciality.objects.create(physician_id="3000",speciality_name="HematoLogist")
-            physician4 = PhysicianSpeciality.objects.create(physician_id="4000",speciality_name="Onchologist")
-            physician5 = PhysicianSpeciality.objects.create(physician_id="5000",speciality_name="Pathologist")
-            physician6 = PhysicianSpeciality.objects.create(physician_id="6000",speciality_name="Onchologist")
-
+            physician1 = PhysicianSpeciality.objects.create(speciality_name="Radiologist")
+            physician2 = PhysicianSpeciality.objects.create(speciality_name="Onchologist")
+            physician3 = PhysicianSpeciality.objects.create(speciality_name="HematoLogist")
+            physician4 = PhysicianSpeciality.objects.create(speciality_name="Onchologist")
+            physician5 = PhysicianSpeciality.objects.create(speciality_name="Pathologist")
+            physician6 = PhysicianSpeciality.objects.create(speciality_name="Onchologist")
             PatientTreatment.objects.bulk_create([
                 PatientTreatment(patient_id=patient1,event_name=event2,physician_id=physician1),
                 PatientTreatment(patient_id=patient2,event_name=event1,physician_id=physician2),

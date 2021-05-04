@@ -7,15 +7,19 @@ def index(request):
     procedure_physicians = []
     unique_physician = []
     count = 0
+    count_physician = {}
     for patient in patient_treatments:
-        d = {}
-        d[patient.physician_id.speciality_name] = patient.physician_id.physician_id
-        procedure_physicians.append(d)
+        procedures = {}
+        procedures[patient.physician_id.speciality_name] = patient.physician_id.id
+        procedure_physicians.append(procedures)
     for physician in procedure_physicians:
         if physician not in unique_physician:
             unique_physician.append(physician)
-    for i in unique_physician:
-        print(i)
-            
-        
-    return render(request,"index.html")
+    for _ in unique_physician:
+        for key,value in _.items():
+            if key not in count_physician:
+                count_physician[key] = 1
+            else:
+                count_physician[key] += 1
+    return render(request,"index.html",{"count_physician":count_physician})
+

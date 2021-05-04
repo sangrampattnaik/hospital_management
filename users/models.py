@@ -2,6 +2,7 @@ from django.db import models
 
 class Patient(models.Model):
     patient_id = models.CharField(max_length=3,unique=True)
+    patient_name = models.CharField(max_length=30)
 
     def __str__(self):
         return f"{self.patient_id}"
@@ -10,20 +11,19 @@ class Patient(models.Model):
         ordering = ['patient_id']
 
 
-
 class PhysicianSpeciality(models.Model):
-    physician_id = models.CharField(max_length=3,unique=True)
     speciality_name = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.physician_id
+        return f"{self.id}"
+
+    def save(self,*args,**kwargs):
+        self.speciality_name = self.speciality_name.capitalize()
+        super(PhysicianSpeciality,self).save(*args,**kwargs)
 
 class EventCategory(models.Model):
-    category_choice = [
-        ('1','Procedure'),
-        ('2','Prescription'),
-        ('3','Test'),
-    ]
+    category_choice = [('1','Procedure'),('2','Prescription'),('3','Test')]
+
     event_name = models.CharField(max_length=50)
     category = models.CharField(max_length=5,choices=category_choice,default='1')
 

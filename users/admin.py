@@ -5,7 +5,7 @@ from . import models
 
 @admin.register(models.Patient)
 class PatientAdmin(admin.ModelAdmin):
-    list_display = ['patient_id']
+    list_display = ['patient_id','patient_name']
 
 
 @admin.register(models.EventCategory)
@@ -14,7 +14,7 @@ class EventCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(models.PhysicianSpeciality)
 class PhysicianSpecialityAdmin(admin.ModelAdmin):
-    list_display = ['physician_id','speciality_name']
+    list_display = ['id','speciality_name']
 
 @admin.register(models.PatientTreatment)
 class PatientAdmin(admin.ModelAdmin):
