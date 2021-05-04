@@ -14,7 +14,7 @@ SECRET_KEY = '&k=wx391s+kwtz-vzma%*#@7ne)=f3xcjos%#u$vuq*_r*rrjm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -112,3 +112,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
