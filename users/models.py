@@ -1,8 +1,12 @@
 from django.db import models
+from django.urls import reverse
 
 class Patient(models.Model):
     patient_id = models.CharField(max_length=3,unique=True)
     patient_name = models.CharField(max_length=30)
+
+    def get_absolute_url(self): # new
+        return reverse('patient-get')
 
     def __str__(self):
         return f"{self.patient_id}"
@@ -20,6 +24,9 @@ class PhysicianSpeciality(models.Model):
     def save(self,*args,**kwargs):
         self.speciality_name = self.speciality_name.capitalize()
         super(PhysicianSpeciality,self).save(*args,**kwargs)
+    
+    def get_absolute_url(self): # new
+        return reverse('physician-speciality-get')
 
 class EventCategory(models.Model):
     category_choice = [('1','Procedure'),('2','Prescription'),('3','Test')]
@@ -29,17 +36,17 @@ class EventCategory(models.Model):
 
     def __str__(self):
         return f"{self.event_name}"
+    
+    def get_absolute_url(self): # new
+        return reverse('event-category-get')
 
 class PatientTreatment(models.Model):
     patient_id = models.ForeignKey(Patient,on_delete=models.CASCADE)
     event_name = models.ForeignKey(EventCategory,on_delete=models.CASCADE)
     physician_id = models.ForeignKey(PhysicianSpeciality,on_delete=models.CASCADE)
 
+    def get_absolute_url(self): # new
+        return reverse('patient-treatment-get')
 
-class Account(models.Model):
-    account_id = models.CharField(max_length=3,unique=True)
 
-class PatientLog(models.Model):
-    patient_id = models.ForeignKey(Patient,on_delete=models.CASCADE)
-    account_id = models.ForeignKey(Account,on_delete=models.CASCADE)
-    date = models.DateField()
+

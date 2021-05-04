@@ -19,3 +19,5 @@ class PhysicianSpecialityAdmin(admin.ModelAdmin):
 @admin.register(models.PatientTreatment)
 class PatientAdmin(admin.ModelAdmin):
     list_display = ['patient_id','event_name','physician_id']
+
+

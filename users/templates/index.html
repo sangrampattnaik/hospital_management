@@ -1,16 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
-</head>
-<body>
-    Index Page 
-    <br><br>
-    {% for key,value in count_physician.items %}
-    {{key}} ----> {{value}} <br><br>
-    {% endfor %}
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Index page{% endblock %}
+{% load crispy_forms_tags %}
+{% block body %}
+<h1>Sample output</h1>
+{% if count_physician %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Speciality</th>
+            <th scope="col">Specility Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for speciality,speciality_count in count_physician.items %}
+        <tr>
+        <td scope="row">{{speciality}}</td>
+        <td>{{speciality_count}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No Record Added</p>
+{% endif %}
+<div class="row">
+    <div class="col-3">
+        <a href="{% url "patient-get" %}" class="btn btn-outline-primary">Patient</a> 
+
+    </div>
+    <div class="col-3">
+
+        <a href="{% url "physician-speciality-get" %}" class="btn btn-outline-primary">Physician</a> 
+    </div>
+    <div class="col-3">
+        <a href="{% url "event-category-get" %}" class="btn btn-outline-primary">Events Category</a> 
+
+    </div>
+    <div class="col-3">
+        <a href="{% url "patient-treatment-get" %}" class="btn btn-outline-primary">Patient Treatment Log</a> 
+
+    </div>
+</div>
+{% endblock %}

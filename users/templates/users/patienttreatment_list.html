@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Patient List{% endblock %}
+{% load crispy_forms_tags %}
+{% block body %}
+{% load crispy_forms_tags %}
+<h1>Patient Treatment List</h1>
+
+{% if patienttreatment_list %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Sl No.</th>
+            <th scope="col">Patient ID</th>
+            <th scope="col">Event Name</th>
+            <th scope="col">Physician ID</th>
+            <th scope="col">Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for patient in patienttreatment_list %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{patient.patient_id}}</td>
+            <td>{{patient.event_name}}</td>
+            <td>{{patient.physician_id}}</td>
+            <td><a href="{% url "patient-treatment-update" patient.pk %}" class="btn btn-outline-info">Update</a></td>
+            <td><a href="{% url "patient-treatment-delete" patient.pk %}" class="btn btn-outline-danger">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No Patient Treatment record Found</p>
+{% endif %}
+<a href="{% url "patient-treatment-create" %}" class="btn btn-primary"> Add a Patient Treatment</a>
+
+{% endblock %}

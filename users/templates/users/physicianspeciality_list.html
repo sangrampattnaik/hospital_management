@@ -1,0 +1,33 @@
+
+{% extends "base.html" %}
+{% block title %}Patient List{% endblock %}
+{% load crispy_forms_tags %}
+{% block body %}
+{% load crispy_forms_tags %}
+<h1>Physician Specility List</h1>
+
+{% if physicianspeciality_list %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Sl No.</th>
+            <th scope="col">Speciality Name</th>
+            <th scope="col">Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for patient in physicianspeciality_list %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{patient.speciality_name}}</td>
+            <td><a href="{% url "physician-speciality-update" patient.pk %}" class="btn btn-outline-info">Update</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No Physician record Found</p>
+{% endif %}
+<a href="{% url "physician-speciality-create" %}" class="btn btn-primary"> Add a Physician Speciality</a>
+
+{% endblock %}

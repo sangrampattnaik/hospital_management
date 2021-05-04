@@ -1,4 +1,4 @@
-from users.models import Patient,PhysicianSpeciality, EventCategory, PatientTreatment, Account, PatientLog
+from users.models import Patient,PhysicianSpeciality, EventCategory, PatientTreatment
 from django import forms
 
 
@@ -18,12 +18,7 @@ class EventCategoryForm(forms.ModelForm):
         model = EventCategory
         fields = "__all__"
 
-class AccountForm(forms.ModelForm):
+class PatientTreatmentForm(forms.ModelForm):
     class Meta:
-        model = Account
-        fields = "__all__"
-
-class PatientLogForm(forms.ModelForm):
-    class Meta:
-        model = PatientLog
+        model = PatientTreatment
         fields = "__all__"
