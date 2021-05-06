@@ -40,6 +40,9 @@ class EventCategory(models.Model):
     def get_absolute_url(self): # new
         return reverse('event-category-get')
 
+    def xx(self):
+        return self.category
+
 class PatientTreatment(models.Model):
     patient_id = models.ForeignKey(Patient,on_delete=models.CASCADE)
     event_name = models.ForeignKey(EventCategory,on_delete=models.CASCADE)
@@ -48,5 +51,10 @@ class PatientTreatment(models.Model):
     def get_absolute_url(self): # new
         return reverse('patient-treatment-get')
 
+class PatientLog(models.Model):
+    account_id = models.CharField(max_length=3)
+    date = models.DateField()
+    patient_id = models.CharField(max_length=3)
 
-
+    def get_absolute_url(self): # new
+        return reverse('patient-log-get')

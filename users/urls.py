@@ -22,4 +22,10 @@ urlpatterns = [
     path('patient-treatment-create/', views.PatientTreatmentCreate.as_view(),name="patient-treatment-create"),
     path('patient-treatment-update/<pk>/', views.PatientTreatmentUpdate.as_view(),name="patient-treatment-update"),
     path('patient-treatment-delete/<pk>/', views.PatientTreatmentDelete.as_view(),name="patient-treatment-delete"),
+
+
+    path('patient-log-get/', views.PatientLogList.as_view(),name="patient-log-get"),
+    path('patient-log-create/', views.PatientLogCreate.as_view(),name="patient-log-create"),
+    path('patient-log-update/<pk>/', views.PatientLogUpdate.as_view(),name="patient-log-update"),
+    path('patient-log-delete/<pk>/', views.PatientLogDelete.as_view(),name="patient-log-delete"),
 ]

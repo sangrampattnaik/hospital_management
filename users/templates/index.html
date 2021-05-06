@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Index page{% endblock %}
 {% load crispy_forms_tags %}
+{% load filters %}
 {% block body %}
-<h1>Sample output</h1>
+<h3 class="text-success">Unique Physician output</h3>
 {% if count_physician %}
 <table class="table">
     <thead>
@@ -23,22 +24,30 @@
 {% else %}
 <p>No Record Added</p>
 {% endif %}
-<div class="row">
-    <div class="col-3">
-        <a href="{% url "patient-get" %}" class="btn btn-outline-primary">Patient</a> 
 
-    </div>
-    <div class="col-3">
+<h3 class="text-info">Unique Patient Visited</h3>
 
-        <a href="{% url "physician-speciality-get" %}" class="btn btn-outline-primary">Physician</a> 
-    </div>
-    <div class="col-3">
-        <a href="{% url "event-category-get" %}" class="btn btn-outline-primary">Events Category</a> 
+{% for key,value in count_unique_patient.items %}
+<p class="text-danger text-center">{{key | month}}</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Account ID</th>
+            <th scope="col">Unique Patient Visited</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i,j in value.items %}
+        <tr>
+        <td scope="row">{{i}}</td>
+        <td>{{j | length}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endfor %}
 
-    </div>
-    <div class="col-3">
-        <a href="{% url "patient-treatment-get" %}" class="btn btn-outline-primary">Patient Treatment Log</a> 
 
-    </div>
-</div>
+
+
 {% endblock %}

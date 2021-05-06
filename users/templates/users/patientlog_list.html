@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Patient Log{% endblock %}
+{% load crispy_forms_tags %}
+{% load filters %}
+{% block body %}
+{% load crispy_forms_tags %}
+<h1>Patient Log</h1>
+
+{% if patientlog_list %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Sl No.</th>
+            <th scope="col">Account ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">Patient ID</th>
+            <th scope="col">Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for patient in patientlog_list %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{patient.account_id}}</td>
+            <td>{{patient.date | full_date }}</td>
+            <td>{{patient.patient_id}}</td>
+            <td><a href="{% url "patient-log-update" patient.pk %}" class="btn btn-outline-info">Update</a>
+            <a href="{% url "patient-log-delete" patient.pk %}" class="btn btn-outline-danger">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No Patient Log record Found</p>
+{% endif %}
+<a href="{% url "patient-log-create" %}" class="btn btn-primary"> Add a Patient Log</a>
+
+{% endblock %}
